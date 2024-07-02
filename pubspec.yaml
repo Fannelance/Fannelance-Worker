@@ -53,6 +53,3 @@ flutter:
       fonts:
         - asset: assets/fonts/Gilroy-Bold.ttf
 
-    - family: CustomIcons
-      fonts:
-        - asset: assets/fonts/CustomIcons.ttf
