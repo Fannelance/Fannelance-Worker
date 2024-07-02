@@ -6,14 +6,12 @@ import 'package:fannelance_worker/views/login_view.dart';
 import 'package:fannelance_worker/views/otp_view.dart';
 import 'package:fannelance_worker/views/phone_number_view.dart';
 import 'package:fannelance_worker/views/signup_view.dart';
-import 'package:fannelance_worker/views/waiting_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
   Map<String, Widget Function(BuildContext)> routes = {
     kAccountRoute: (context) => const AccountView(),
     kHomeRoute: (context) => const HomeView(),
-    kWaitingRoute: (context) => const WaitingView(),
     kChangePasswordRoute: (context) => const ChangePasswordview(),
     kForgotPasswordRoute: (context) => const ForgotPasswordView(),
     kPhoneNumberRoute: (context) => const PhoneNumberView(),
