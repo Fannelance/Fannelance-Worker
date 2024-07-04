@@ -1,8 +1,5 @@
 import 'package:fannelance_worker/core/constants.dart';
-import 'package:fannelance_worker/core/show_snackbar_messenger.dart';
 import 'package:fannelance_worker/services/socket_service.dart';
-import 'package:fannelance_worker/widgets/notification_details_widget.dart';
-import 'package:fannelance_worker/widgets/notification_showmodal.dart';
 import 'package:flutter/material.dart';
 
 class ButtonHomeWidget extends StatefulWidget {
@@ -20,7 +17,7 @@ class ButtonHomeWidgetState extends State<ButtonHomeWidget> {
   static bool isAvailable = false;
   static BuildContext? homeContext;
 
-  bool _isDisposed = false;
+  bool isDisposed = false;
   static late SocketService socketService;
 
   @override
@@ -46,7 +43,7 @@ class ButtonHomeWidgetState extends State<ButtonHomeWidget> {
 
   @override
   void dispose() {
-    _isDisposed = true;
+    isDisposed = true;
     socketService.disconnect();
     super.dispose();
   }

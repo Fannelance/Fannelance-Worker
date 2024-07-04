@@ -1,5 +1,8 @@
+import 'package:fannelance_worker/core/constants.dart';
+import 'package:fannelance_worker/widgets/home_activity_widget.dart';
+import 'package:fannelance_worker/widgets/home_on_off_widget.dart';
+import 'package:fannelance_worker/widgets/wallet_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fannelance_worker/widgets/account_profile_widget.dart';
 import 'package:fannelance_worker/widgets/home_button_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,50 +28,23 @@ class _HomeViewState extends State<HomeView> {
         onPressed: toggleStatus,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            Row(
-              children: [
-                const AccountProfileWidget(),
-                const SizedBox(width: 90),
-                // Animated status indicator
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  width: 16,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isOnline ? Colors.green : Colors.red,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                // Animated switcher for status text
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return ScaleTransition(scale: animation, child: child);
-                  },
-                  child: Text(
-                    isOnline ? 'Online' : 'Offline',
-                    key: ValueKey<bool>(
-                        isOnline), // Ensure the text changes smoothly
-                    style: TextStyle(
-                      color: isOnline ? Colors.green : Colors.red,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              box_50,
+              OnOffHomeWidget(isOnline: isOnline),
+              box_40,
+              const WalletWidget(),
+              box_50,
+              const HomeActivityWidget(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+

@@ -31,7 +31,6 @@ class Routes {
 }
 
 const kHomeRoute = 'Home View';
-const kWaitingRoute = 'Waiting View';
 const kChangePasswordRoute = 'Change Password View';
 const kForgotPasswordRoute = 'Forgot Password View';
 const kPhoneNumberRoute = 'Phone Number View';

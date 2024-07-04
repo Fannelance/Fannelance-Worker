@@ -54,9 +54,18 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
       child: Column(
         children: [
           box_60,
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back,
+                ),
+                iconSize: screenWidth / 15,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               ShowDialogAccountWidget(),
             ],
           ),
