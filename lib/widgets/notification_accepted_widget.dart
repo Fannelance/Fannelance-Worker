@@ -11,47 +11,46 @@ class NotificationAcceptedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     Uri url;
-    return Container();
-    // return NotificationWidget(
-    //   trailing: MaterialButton(
-    //     minWidth: 44,
-    //     height: 44,
-    //     color: kBlack,
-    //     onPressed: () async {
-    //       url = Uri(
-    //         scheme: 'tel',
-    //         path: '01025042013',
-    //       );
-    //       await launchUrl(url);
-    //     },
-    //     shape: const CircleBorder(
-    //       side: BorderSide(
-    //         color: kBlack,
-    //       ),
-    //     ),
-    //     child: const Icon(
-    //       Icons.phone,
-    //       color: kWhite,
-    //       size: 28,
-    //     ),
-    //   ),
-    //   inProgress: Row(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       const Icon(FontAwesomeIcons.spinner),
-    //       const SizedBox(
-    //         width: 10,
-    //       ),
-    //       Text(
-    //         'In progress',
-    //         style: TextStyle(
-    //           fontSize: screenWidth / 22,
-    //           fontFamily: kBold,
-    //           color: kGrey3,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
+    return NotificationWidget(
+      trailing: MaterialButton(
+        minWidth: 44,
+        height: 44,
+        color: kBlack,
+        onPressed: () async {
+          url = Uri(
+            scheme: 'tel',
+            path: '01025042013',
+          );
+          await launchUrl(url);
+        },
+        shape: const CircleBorder(
+          side: BorderSide(
+            color: kBlack,
+          ),
+        ),
+        child: const Icon(
+          Icons.phone,
+          color: kWhite,
+          size: 28,
+        ),
+      ),
+      inProgress: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(FontAwesomeIcons.spinner),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            'In progress',
+            style: TextStyle(
+              fontSize: screenWidth / 22,
+              fontFamily: kBold,
+              color: kGrey3,
+            ),
+          ),
+        ],
+      ), userData: null,
+    );
   }
 }

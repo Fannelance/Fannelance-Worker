@@ -25,6 +25,37 @@ class SignupViewState extends State<SignupView> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
+    const List<Map<String, String>> jobsMenuItems = [
+      {'label': 'Carpentry', 'value': 'Carpentry'},
+      {'label': 'Cleaning', 'value': 'Cleaning'},
+      {'label': 'Painting', 'value': 'Painting'},
+      {'label': 'Plumbing', 'value': 'Plumbing'},
+      {'label': 'Electricity', 'value': 'Electricity'},
+      {'label': 'Mechanic', 'value': 'Mechanic'},
+      {'label': 'Gardening', 'value': 'Gardening'},
+      {'label': 'Home Appliances', 'value': 'Home Appliances'},
+    ];
+
+    final List<DropdownMenuEntry<String>> jobDropdownMenuEntries = jobsMenuItems
+        .map((item) => DropdownMenuEntry(
+              label: item['label']!,
+              value: item['value']!,
+            ))
+        .toList();
+
+    const List<Map<String, String>> genderMenuItems = [
+      {'label': 'Female', 'value': 'Female'},
+      {'label': 'Male', 'value': 'Male'},
+    ];
+
+    final List<DropdownMenuEntry<String>> gendreDropdownMenuEntries =
+        genderMenuItems
+            .map((item) => DropdownMenuEntry(
+                  label: item['label']!,
+                  value: item['value']!,
+                ))
+            .toList();
+
     return Scaffold(
       appBar: const AppBarSubWidget(),
       body: AuthenticationBodyWidget(
@@ -53,16 +84,7 @@ class SignupViewState extends State<SignupView> {
                   selectedGender = value;
                 }
               },
-              dropdownMenuEntries: const <DropdownMenuEntry<String>>[
-                DropdownMenuEntry(
-                  label: 'Male',
-                  value: 'Male',
-                ),
-                DropdownMenuEntry(
-                  label: 'Female',
-                  value: 'Female',
-                ),
-              ],
+              dropdownMenuEntries: gendreDropdownMenuEntries,
               hintText: 'Gender',
             ),
             box_15,
@@ -72,40 +94,7 @@ class SignupViewState extends State<SignupView> {
                   selectedJobTitle = value;
                 }
               },
-              dropdownMenuEntries: const <DropdownMenuEntry<String>>[
-                DropdownMenuEntry(
-                  label: 'Carpentry',
-                  value: 'Carpentry',
-                ),
-                DropdownMenuEntry(
-                  label: 'Cleaning',
-                  value: 'Cleaning',
-                ),
-                DropdownMenuEntry(
-                  label: 'Painting',
-                  value: 'Painting',
-                ),
-                DropdownMenuEntry(
-                  label: 'Plumbing',
-                  value: 'Plumbing',
-                ),
-                DropdownMenuEntry(
-                  label: 'Electricity',
-                  value: 'Electricity',
-                ),
-                DropdownMenuEntry(
-                  label: 'Mechanic',
-                  value: 'Mechanic',
-                ),
-                DropdownMenuEntry(
-                  label: 'Gardening',
-                  value: 'Gardening',
-                ),
-                DropdownMenuEntry(
-                  label: 'Home Appliances',
-                  value: 'Home Appliances',
-                ),
-              ],
+              dropdownMenuEntries: jobDropdownMenuEntries,
               hintText: 'Job Title',
             ),
             box_15,
@@ -138,6 +127,8 @@ class SignupViewState extends State<SignupView> {
           lastNameController.clear();
           emailController.clear();
           ChangePasswordviewState.passwordController.clear();
+          selectedGender = '';
+          selectedJobTitle = '';
         },
       ),
     );

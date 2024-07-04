@@ -1,7 +1,9 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/widgets/account_listtile_widget.dart';
 import 'package:fannelance_worker/widgets/account_showdialog_widget.dart';
+import 'package:fannelance_worker/widgets/rating.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:iconsax/iconsax.dart';
@@ -66,18 +68,14 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
                   Navigator.pop(context);
                 },
               ),
-              ShowDialogAccountWidget(),
+              const ShowDialogAccountWidget(),
             ],
           ),
           CircleAvatar(
             radius: screenWidth / 9,
             backgroundImage: widget.userData!['gender'] == 'female'
-                ? const AssetImage(
-                    'assets/icons/female.png',
-                  )
-                : const AssetImage(
-                    'assets/icons/male.png',
-                  ),
+                ? femaleImage
+                : maleImage,
           ),
           box_10,
           Text(
@@ -87,10 +85,27 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
               fontFamily: kBold,
             ),
           ),
-          box_50,
+          box_5,
+          RatingBarIndicator(
+            rating: RatingBarWidgetState().averageRating(),
+            itemSize: 20.0,
+            unratedColor: kAmber.withAlpha(50),
+            itemBuilder: (context, index) {
+              return const Icon(
+                Icons.star,
+                color: kAmber,
+              );
+            },
+          ),
+          box_40,
           ListTileAccountWidget(
             title: 'Username',
             subTitle: userName,
+            icon: FontAwesome.user,
+          ),
+          ListTileAccountWidget(
+            title: 'Job title',
+            subTitle: widget.userData!['jobTitle'],
             icon: FontAwesome.user,
           ),
           ListTileAccountWidget(

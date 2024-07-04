@@ -33,51 +33,44 @@ class ActivityWidget extends StatelessWidget {
               Text(
                 'John Doe',
                 style: TextStyle(
-                  fontSize: screenWidth / 22,
+                  fontSize: screenWidth / 24,
                   fontFamily: kBold,
                 ),
               ),
-              
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              MaterialButton(
-                minWidth: 35,
-                height: 35,
-                color: kGreen,
-                onPressed: () async {
-                  url = Uri(
-                    scheme: 'tel',
-                    path: '01025042013',
-                  );
-                  await launchUrl(url);
-                },
-                shape: const CircleBorder(
-                  side: BorderSide(
-                    color: kGreen,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.phone,
-                  color: kWhite,
-                  size: 20,
-                ),
-              ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(0),
                 child: Text(
                   '5th Jan 11:00',
                   style: TextStyle(
-                    fontSize: screenWidth / 24,
+                    fontSize: screenWidth / 26,
                     fontFamily: kBold,
-                    color: kGrey5,
+                    color: kGrey7,
                   ),
                 ),
               ),
             ],
+          ),
+          MaterialButton(
+            minWidth: 35,
+            height: 35,
+            color: kGreen,
+            onPressed: () async {
+              url = Uri(
+                scheme: 'tel',
+                path: '01025042013',
+              );
+              await launchUrl(url);
+            },
+            shape: const CircleBorder(
+              side: BorderSide(
+                color: kGreen,
+              ),
+            ),
+            child: const Icon(
+              Icons.phone,
+              color: kWhite,
+              size: 20,
+            ),
           ),
         ],
       ),

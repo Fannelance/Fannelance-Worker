@@ -1,6 +1,6 @@
-import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/services/user_data_service.dart';
 import 'package:fannelance_worker/widgets/account_body_widget.dart';
+import 'package:fannelance_worker/widgets/circular_indicator_widget.dart';
 import 'package:flutter/material.dart';
 
 class AccountView extends StatefulWidget {
@@ -18,11 +18,7 @@ class _AccountViewState extends State<AccountView> {
         future: UserDataService().userDataRequest(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: kBlack,
-              ),
-            );
+            return const CircularIndicatorWidget();
           } else {
             var userData = snapshot.data?['data'];
             

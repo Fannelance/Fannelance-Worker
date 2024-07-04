@@ -27,7 +27,7 @@ class HomeActivityWidget extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ActivityView();
+                    return const ActivityView();
                   }));
                 },
                 child: Padding(
@@ -58,7 +58,7 @@ class HomeActivityWidget extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 2,
+            itemCount: 3,
             itemBuilder: (context, index) {
               return const Column(
                 children: [

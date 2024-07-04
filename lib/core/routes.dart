@@ -1,4 +1,5 @@
 import 'package:fannelance_worker/views/account_view.dart';
+import 'package:fannelance_worker/views/activity_view.dart';
 import 'package:fannelance_worker/views/change_password_view.dart';
 import 'package:fannelance_worker/views/forgot_password_view.dart';
 import 'package:fannelance_worker/views/home_view.dart';
@@ -12,6 +13,7 @@ class Routes {
   Map<String, Widget Function(BuildContext)> routes = {
     kAccountRoute: (context) => const AccountView(),
     kHomeRoute: (context) => const HomeView(),
+    kActivityRoute: (context) => const ActivityView(),
     kChangePasswordRoute: (context) => const ChangePasswordview(),
     kForgotPasswordRoute: (context) => const ForgotPasswordView(),
     kPhoneNumberRoute: (context) => const PhoneNumberView(),
@@ -39,3 +41,4 @@ const kOtpForgotPasswordRoute = 'OTP Forgot Password View';
 const kLoginRoute = 'Login View';
 const kSignupRoute = 'Signup View';
 const kAccountRoute = 'Account View';
+const kActivityRoute = 'activity View';

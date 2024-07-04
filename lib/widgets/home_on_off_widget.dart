@@ -1,8 +1,7 @@
-import 'package:fannelance_worker/widgets/account_profile_widget.dart';
 import 'package:flutter/material.dart';
 
-class OnOffHomeWidget extends StatelessWidget {
-  const OnOffHomeWidget({
+class HomeOnOffWidget extends StatelessWidget {
+  const HomeOnOffWidget({
     super.key,
     required this.isOnline,
   });
@@ -13,8 +12,6 @@ class OnOffHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const AccountProfileWidget(),
-        const SizedBox(width: 90),
         // Animated status indicator
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -29,14 +26,15 @@ class OnOffHomeWidget extends StatelessWidget {
         // Animated switcher for status text
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          transitionBuilder:
-              (Widget child, Animation<double> animation) {
-            return ScaleTransition(scale: animation, child: child);
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return ScaleTransition(
+              scale: animation,
+              child: child,
+            );
           },
           child: Text(
             isOnline ? 'Online' : 'Offline',
-            key: ValueKey<bool>(
-                isOnline), // Ensure the text changes smoothly
+            key: ValueKey<bool>(isOnline), // Ensure the text changes smoothly
             style: TextStyle(
               color: isOnline ? Colors.green : Colors.red,
               fontSize: 16,

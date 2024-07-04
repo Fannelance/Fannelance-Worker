@@ -65,3 +65,12 @@ const box_70 = SizedBox(height: 70);
 const box_80 = SizedBox(height: 80);
 const box_95 = SizedBox(height: 95);
 const box_100 = SizedBox(height: 100);
+
+/* ************************* Images ************************* */
+
+const femaleImage = AssetImage(
+  'assets/icons/female.png',
+);
+const maleImage = AssetImage(
+  'assets/icons/male.png',
+);

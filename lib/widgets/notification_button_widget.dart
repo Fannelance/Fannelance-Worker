@@ -1,5 +1,4 @@
 import 'package:fannelance_worker/core/constants.dart';
-import 'package:fannelance_worker/widgets/notification_accepted_widget.dart';
 import 'package:fannelance_worker/widgets/notification_showmodal.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class NotificationButtonWidget extends StatelessWidget {
         Navigator.pop(context);
         NotificationShowModal.showModalSheet(
           context,
-          const NotificationAcceptedWidget(),
+           Container(),
         );
       },
       child: Row(

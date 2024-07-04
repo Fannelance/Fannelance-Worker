@@ -7,10 +7,10 @@ class RatingBarWidget extends StatefulWidget {
   const RatingBarWidget({super.key});
 
   @override
-  State<RatingBarWidget> createState() => _RatingBarWidgetState();
+  State<RatingBarWidget> createState() => RatingBarWidgetState();
 }
 
-class _RatingBarWidgetState extends State<RatingBarWidget> {
+class RatingBarWidgetState extends State<RatingBarWidget> {
   double _rating = 5;
   final List<double> oneStars = [];
   final List<double> twoStars = [];
@@ -102,8 +102,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
       print('totalRatings${totalRatings()}');
     }
 
-    return Scaffold(
-      body: Column(
+    return  Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -122,7 +121,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
             },
           )
         ],
-      ),
+      
     );
   }
 }

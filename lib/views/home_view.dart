@@ -1,6 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/widgets/home_activity_widget.dart';
-import 'package:fannelance_worker/widgets/home_on_off_widget.dart';
+import 'package:fannelance_worker/widgets/home_appbar_widget.dart';
 import 'package:fannelance_worker/widgets/wallet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:fannelance_worker/widgets/home_button_widget.dart';
@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               box_50,
-              OnOffHomeWidget(isOnline: isOnline),
+              HomeAppbarWidget(isOnline: isOnline),
               box_40,
               const WalletWidget(),
               box_50,
