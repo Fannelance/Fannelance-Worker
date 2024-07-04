@@ -27,30 +27,48 @@ class WalletDialogTopupWidgetState extends State<WalletDialogTopupWidget> {
     return AlertDialog(
       backgroundColor: kWhite,
       surfaceTintColor: kWhite,
-      title: Text(
-        'Top up your wallet',
-        style: TextStyle(
-          fontSize: screenWidth / 20,
-          fontWeight: FontWeight.w600,
-        ),
+      title: const Column(
+        children: [
+          Image(image: AssetImage('assets/icons/wallet.png'), height: 95),
+        ],
       ),
-      content: TextField(
-        controller: valueController,
-        keyboardType: TextInputType.number,
-        cursorColor: kBlack,
-        onTapOutside: (pointer) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        decoration: InputDecoration(
-          alignLabelWithHint: true,
-          helperText: 'EGP',
-          hintText: 'Enter the recharge value',
-          hintStyle: TextStyle(fontSize: screenWidth / 25),
-          focusColor: kBlack,
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: kBlack),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Top up your wallet',
+            style: TextStyle(
+              fontSize: screenWidth / 20,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
+          box_5,
+          Text('Recharge Your Falnnelance Wallet to Access Requests Instantly',
+              style: TextStyle(
+                  fontSize: screenWidth / 28,
+                  fontWeight: FontWeight.w600,
+                  color: kGrey6)),
+          TextField(
+            controller: valueController,
+            keyboardType: TextInputType.number,
+            cursorColor: kGrey9,
+            onTapOutside: (pointer) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            decoration: InputDecoration(
+              alignLabelWithHint: true,
+              helperText: 'EGP',
+              hintText: 'Enter the recharge value',
+              hintStyle: TextStyle(color: kGrey9, fontSize: screenWidth / 25),
+              focusColor: kGrey9,
+              focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGrey9),
+              ),
+            ),
+          ),
+        ],
       ),
       actions: [
         ElevatedButton(

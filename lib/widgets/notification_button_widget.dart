@@ -1,4 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
+import 'package:fannelance_worker/widgets/home_button_widget.dart';
+import 'package:fannelance_worker/widgets/notification_details_widget.dart';
 import 'package:fannelance_worker/widgets/notification_showmodal.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +21,8 @@ class NotificationButtonWidget extends StatelessWidget {
       ),
       onPressed: () {
         Navigator.pop(context);
-        NotificationShowModal.showModalSheet(
-          context,
-           Container(),
-        );
+        ButtonHomeWidgetState.socketService
+            .acceptRequest(NotificationDetailsWidgetState.request);
       },
       child: Row(
         children: [
@@ -33,12 +33,12 @@ class NotificationButtonWidget extends StatelessWidget {
                 height: 30,
                 child: CircularProgressIndicator(
                   color: kWhiteo,
-                  backgroundColor:kWhiteo,
+                  backgroundColor: kWhiteo,
                   strokeWidth: 2,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 3),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 child: Text(
                   '$seconds',
                   style: TextStyle(

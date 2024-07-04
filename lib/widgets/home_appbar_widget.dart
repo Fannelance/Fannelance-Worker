@@ -16,7 +16,7 @@ class HomeAppbarWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const AccountProfileWidget(),
-        const Spacer(),
+        const Spacer(flex: 1),
         HomeOnOffWidget(isOnline: isOnline),
         const Spacer(flex: 2),
       ],

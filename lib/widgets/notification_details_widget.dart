@@ -6,11 +6,10 @@ import 'package:geocoding/geocoding.dart';
 
 class NotificationDetailsWidget extends StatefulWidget {
   final dynamic userData;
+  final dynamic request;
 
-  const NotificationDetailsWidget({
-    super.key,
-    required this.userData,
-  });
+  const NotificationDetailsWidget(
+      {super.key, required this.userData, required this.request});
 
   @override
   NotificationDetailsWidgetState createState() =>
@@ -18,6 +17,7 @@ class NotificationDetailsWidget extends StatefulWidget {
 }
 
 class NotificationDetailsWidgetState extends State<NotificationDetailsWidget> {
+  static var request;
   Future<String> getCurrentLocation(double lat, double long) async {
     List<Placemark> location = await placemarkFromCoordinates(lat, long);
     Placemark place = location[0];
@@ -30,6 +30,7 @@ class NotificationDetailsWidgetState extends State<NotificationDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    request = widget.request;
 
     final latitude = widget.userData['location']['coordinates'][0];
     final longitude = widget.userData['location']['coordinates'][1];

@@ -1,7 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/widgets/account_listtile_widget.dart';
 import 'package:fannelance_worker/widgets/account_showdialog_widget.dart';
-import 'package:fannelance_worker/widgets/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -40,6 +39,7 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
 
     final latitude = widget.userData['location']['coordinates'][0];
     final longitude = widget.userData['location']['coordinates'][1];
+    final rate = widget.userData['rate'];
 
     if (locationString == null) {
       getCurrentLocation(latitude, longitude).then((location) {
@@ -85,15 +85,14 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
               fontFamily: kBold,
             ),
           ),
-          box_5,
           RatingBarIndicator(
-            rating: RatingBarWidgetState().averageRating(),
-            itemSize: 20.0,
-            unratedColor: kAmber.withAlpha(50),
+            rating: rate.toDouble(),
+            itemSize: 18.0,
+            unratedColor: kBlack.withAlpha(50),
             itemBuilder: (context, index) {
               return const Icon(
                 Icons.star,
-                color: kAmber,
+                color: kBlack,
               );
             },
           ),
@@ -106,7 +105,7 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
           ListTileAccountWidget(
             title: 'Job title',
             subTitle: widget.userData!['jobTitle'],
-            icon: FontAwesome.user,
+            icon: FontAwesome.briefcase,
           ),
           ListTileAccountWidget(
             title: 'Email',
