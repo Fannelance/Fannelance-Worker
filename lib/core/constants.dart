@@ -7,6 +7,7 @@ const kSecureStorage = FlutterSecureStorage();
 
 /* ************************* Colors ************************* */
 
+const kPrimaryColor = Color(0xff1498B7);
 const kGrey3 = Color(0xff333333);
 const kGrey5 = Color(0xff555555);
 const kGrey6 = Color(0xff666666);

@@ -1,16 +1,32 @@
-
 import 'package:fannelance_worker/core/constants.dart';
-import 'package:fannelance_worker/widgets/wallet_card_widget.dart';
+import 'package:fannelance_worker/services/stripe_service.dart';
 import 'package:flutter/material.dart';
 
-class WalletDialogTopupWidget extends StatelessWidget {
-  const WalletDialogTopupWidget({super.key});
+class WalletDialogTopupWidget extends StatefulWidget {
+  final Function() onValueUpdated;
+  final int topUpValue;
+
+  const WalletDialogTopupWidget({
+    super.key,
+    required this.onValueUpdated,
+    required this.topUpValue,
+  });
+
+  @override
+  State<WalletDialogTopupWidget> createState() =>
+      WalletDialogTopupWidgetState();
+}
+
+class WalletDialogTopupWidgetState extends State<WalletDialogTopupWidget> {
+  static TextEditingController valueController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return AlertDialog(
+      backgroundColor: kWhite,
+      surfaceTintColor: kWhite,
       title: Text(
         'Top up your wallet',
         style: TextStyle(
@@ -19,6 +35,7 @@ class WalletDialogTopupWidget extends StatelessWidget {
         ),
       ),
       content: TextField(
+        controller: valueController,
         keyboardType: TextInputType.number,
         cursorColor: kBlack,
         onTapOutside: (pointer) {
@@ -37,14 +54,15 @@ class WalletDialogTopupWidget extends StatelessWidget {
       ),
       actions: [
         ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-            showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return const WalletCardWidget();
-              },
+          onPressed: () async {
+            await StripeService.handlePayment(
+              context,
+              widget.topUpValue,
+              widget.onValueUpdated,
             );
+            if (context.mounted) {
+              Navigator.pop(context);
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: kBlack,
