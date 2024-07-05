@@ -1,13 +1,21 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ActivityWidget extends StatelessWidget {
-  const ActivityWidget({super.key});
+  final dynamic userData;
+  const ActivityWidget({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+    String userName = toBeginningOfSentenceCase('${userData!['firstname']} ') +
+        toBeginningOfSentenceCase('${userData!['lastname']}');
+    DateTime createdAt = DateTime.parse(userData['request_date']);
+    DateTime localDate = createdAt.toLocal();
+    String formattedDate = DateFormat('dd MMM HH:mm').format(localDate);
+
     Uri url;
     return ListTile(
       leading: const CircleAvatar(
@@ -31,7 +39,7 @@ class ActivityWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'John Doe',
+                userName,
                 style: TextStyle(
                   fontSize: screenWidth / 24,
                   fontFamily: kBold,
@@ -40,7 +48,7 @@ class ActivityWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: Text(
-                  '5th Jan 11:00',
+                  formattedDate,
                   style: TextStyle(
                     fontSize: screenWidth / 26,
                     fontFamily: kBold,
@@ -57,7 +65,7 @@ class ActivityWidget extends StatelessWidget {
             onPressed: () async {
               url = Uri(
                 scheme: 'tel',
-                path: '01025042013',
+                path: userData['phone'],
               );
               await launchUrl(url);
             },

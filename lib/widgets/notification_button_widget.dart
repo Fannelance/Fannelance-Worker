@@ -1,7 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/widgets/home_button_widget.dart';
 import 'package:fannelance_worker/widgets/notification_details_widget.dart';
-import 'package:fannelance_worker/widgets/notification_showmodal.dart';
 import 'package:flutter/material.dart';
 
 class NotificationButtonWidget extends StatelessWidget {
