@@ -134,6 +134,8 @@ abstract class StripeService {
     Function() onValueUpdated,
   ) async {
     try {
+      print('Top up value: $topUpValue');
+      
       PaymentIntentInputModel inputModel = PaymentIntentInputModel(
         amount: topUpValue,
         currency: 'EGP',

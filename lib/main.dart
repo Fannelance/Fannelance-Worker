@@ -1,5 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/core/routes.dart';
+import 'package:fannelance_worker/widgets/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
