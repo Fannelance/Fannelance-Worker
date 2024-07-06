@@ -11,43 +11,37 @@ class HomeOnOffWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      decoration: BoxDecoration(
-          border: Border.all(color: kBlack, width: 2),
-          borderRadius: BorderRadius.circular(50),
-          color: kBlack),
-      child: Row(
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 10,
-            height: 10,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isOnline ? Colors.green : Colors.red,
+    var isOnlineColor = isOnline ? kGreen : kRedEc;
+    return Row(
+      children: [
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          width: 16,
+          height: 16,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isOnlineColor,
+          ),
+        ),
+        const SizedBox(width: 8),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return ScaleTransition(
+              scale: animation,
+              child: child,
+            );
+          },
+          child: Text(
+            isOnline ? 'Online' : 'Offline',
+            key: ValueKey<bool>(isOnline), 
+            style: TextStyle(
+              color: isOnlineColor,
+              fontSize: 16,
             ),
           ),
-          const SizedBox(width: 8),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return ScaleTransition(
-                scale: animation,
-                child: child,
-              );
-            },
-            child: Text(
-              isOnline ? 'Online' : 'Offline',
-              key: ValueKey<bool>(isOnline),
-              style: TextStyle(
-                color: isOnline ? Colors.green : Colors.red,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

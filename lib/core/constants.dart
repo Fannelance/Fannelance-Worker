@@ -19,7 +19,7 @@ const kGreyC8 = Color(0xffC8C8C8);
 const kBlack = Colors.black;
 const kWhite = Colors.white;
 const kWhiteo = Colors.white54;
-const kGreen = Colors.green;
+const kGreen = Color.fromARGB(255, 66, 173, 69);
 const kFocusedBorderColor = Color(0xff17AB90);
 const kRedEc = Color(0xffEC2632);
 const kAmber = Colors.amber;
@@ -73,4 +73,10 @@ const femaleImage = AssetImage(
 );
 const maleImage = AssetImage(
   'assets/icons/male.png',
+);
+const femaleUserImage = AssetImage(
+  'assets/icons/user_female.png',
+);
+const maleUserImage = AssetImage(
+  'assets/icons/user_male.png',
 );

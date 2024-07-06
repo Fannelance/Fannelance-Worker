@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:fannelance_worker/core/constants.dart';
-import 'package:fannelance_worker/widgets/home_button_widget.dart';
-import 'package:fannelance_worker/widgets/notification_details_widget.dart';
+import 'package:fannelance_worker/widgets/notification_widget.dart';
 import 'package:fannelance_worker/widgets/notification_showmodal.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
@@ -36,18 +38,21 @@ class SocketService {
     socket!.emit('connected-worker', [token, available]);
   }
 
-  Future<void> listenToRequests() async {
+  Future<void> listenToRequests(BuildContext context) async {
     String? token = await kSecureStorage.read(key: 'token');
     String workerId = JwtDecoder.decode(token!)['_id'];
-    socket!.on('request-$workerId', (data) {
-      NotificationShowModal.showModalSheet(
-        ButtonHomeWidgetState.homeContext!,
-        NotificationDetailsWidget(
-          userData: data['user'],
-          request: data['request'],
-        ),
-      );
-    });
+    socket!.on(
+      'request-$workerId',
+      (data) {
+        NotificationShowModal.showModalSheet(
+          context,
+          NotificationWidget(
+            userData: data['user'],
+            request: data['request'],
+          ),
+        );
+      },
+    );
   }
 
   Future<void> acceptRequest(request) async {
