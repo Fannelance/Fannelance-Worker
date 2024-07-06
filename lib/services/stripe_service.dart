@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/models/payment_intent_input_model.dart';
+import 'package:fannelance_worker/services/wallet_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -131,11 +132,10 @@ abstract class StripeService {
   static Future<void> handlePayment(
     BuildContext context,
     int topUpValue,
-    Function() onValueUpdated,
   ) async {
     try {
       print('Top up value: $topUpValue');
-      
+
       PaymentIntentInputModel inputModel = PaymentIntentInputModel(
         amount: topUpValue,
         currency: 'EGP',
@@ -158,7 +158,7 @@ abstract class StripeService {
             backgroundColor: Colors.green,
           ),
         );
-        onValueUpdated();
+        WalletService().topUpWalletRequest(topUpValue);
       }
     } catch (error) {
       if (context.mounted) {

@@ -3,12 +3,10 @@ import 'package:fannelance_worker/services/stripe_service.dart';
 import 'package:flutter/material.dart';
 
 class WalletDialogTopupWidget extends StatefulWidget {
-  final Function() onValueUpdated;
   final int topUpValue;
 
   const WalletDialogTopupWidget({
     super.key,
-    required this.onValueUpdated,
     required this.topUpValue,
   });
 
@@ -75,8 +73,7 @@ class WalletDialogTopupWidgetState extends State<WalletDialogTopupWidget> {
           onPressed: () async {
             await StripeService.handlePayment(
               context,
-              widget.topUpValue,
-              widget.onValueUpdated,
+              widget.topUpValue
             );
             if (context.mounted) {
               Navigator.pop(context);

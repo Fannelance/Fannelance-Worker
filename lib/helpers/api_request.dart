@@ -107,7 +107,7 @@ class ApiRequest {
   Future<dynamic> put({
     required String url,
     required Object data,
-    required VoidCallback onPressed,
+    VoidCallback? onPressed,
     bool writeToken = true,
   }) async {
     await dotenv.load(fileName: '.env');
@@ -134,7 +134,7 @@ class ApiRequest {
 
     if (response.statusCode == 200) {
       print('Success!');
-      onPressed();
+      if (onPressed != null) onPressed();
       return response.data;
     } else {
       print(

@@ -21,14 +21,6 @@ class WalletWidgetState extends State<WalletWidget> {
     paymentValue = 0;
   }
 
-  void updatePaymentValue() {
-    setState(() {
-      int newValue =
-          int.tryParse(WalletDialogTopupWidgetState.valueController.text) ?? 0;
-      paymentValue += newValue;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -98,9 +90,6 @@ class WalletWidgetState extends State<WalletWidget> {
                 context: context,
                 builder: (context) {
                   return WalletDialogTopupWidget(
-                    onValueUpdated: () {
-                      updatePaymentValue();
-                    },
                     topUpValue: int.tryParse(
                           WalletDialogTopupWidgetState.valueController.text,
                         ) ??
