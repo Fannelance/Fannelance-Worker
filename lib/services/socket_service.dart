@@ -33,8 +33,6 @@ class SocketService {
   Future<void> connected(bool available) async {
     print('Your are a $available');
     String? token = await kSecureStorage.read(key: 'token');
-    // String workerId = JwtDecoder.decode(token!)['_id'];
-
     socket!.emit('connected-worker', [token, available]);
   }
 

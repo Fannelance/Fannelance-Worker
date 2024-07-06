@@ -1,4 +1,6 @@
 import 'package:fannelance_worker/core/constants.dart';
+import 'package:fannelance_worker/services/wallet_service.dart';
+import 'package:fannelance_worker/widgets/circular_indicator_widget.dart';
 import 'package:fannelance_worker/widgets/wallet_dialog_topup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -66,14 +68,27 @@ class WalletWidgetState extends State<WalletWidget> {
                 ],
               ),
               box_10,
-              Text(
-                WalletDialogTopupWidgetState.valueController.text.isEmpty
-                    ? '00 EGP'
-                    : '$paymentValue EGP',
-                style: TextStyle(
-                  fontSize: screenWidth / 18,
-                  color: kPrimaryColor,
-                ),
+              FutureBuilder(
+                future: WalletService()
+                    .getWalletRequest(), // Step 1: The function that sends the request
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularIndicatorWidget(); // Show loading indicator
+                  } else if (snapshot.hasError) {
+                    return Text(
+                        'Error: ${snapshot.error}'); // Show error message
+                  } else {
+                    print(snapshot.data["data"]);
+                    String balance = snapshot.data["data"].toString();
+                    return Text(
+                      '$balance EGP',
+                      style: TextStyle(
+                        fontSize: screenWidth / 18,
+                        color: kPrimaryColor,
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
