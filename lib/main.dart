@@ -1,6 +1,5 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/core/routes.dart';
-import 'package:fannelance_worker/widgets/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -8,7 +7,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
-  Stripe.publishableKey=dotenv.env['publishableKey']!;
+  Stripe.publishableKey = dotenv.env['publishableKey']!;
   final String token = await kSecureStorage.read(key: 'token') ?? "";
   runApp(FannelanceWorker(token: token));
 }

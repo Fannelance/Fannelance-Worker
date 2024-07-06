@@ -13,12 +13,31 @@ class WalletWidget extends StatefulWidget {
 }
 
 class WalletWidgetState extends State<WalletWidget> {
-  int paymentValue = 0;
+  bool isLoading = true;
+  int currentBalance = 0;
 
   @override
   void initState() {
     super.initState();
-    paymentValue = 0;
+    fetchCurrentBalance();
+  }
+
+  updateCurrentBalance() {
+    setState(() {
+      int newValue =
+          int.tryParse(WalletDialogTopupWidgetState.valueController.text) ?? 0;
+      WalletService().topUpWalletRequest(newValue).then((_) {
+        fetchCurrentBalance();
+      });
+    });
+  }
+
+  Future<void> fetchCurrentBalance() async {
+    var response = await WalletService().getWalletRequest();
+    setState(() {
+      currentBalance = int.parse(response["data"].toString());
+      isLoading = false;
+    });
   }
 
   @override
@@ -60,28 +79,15 @@ class WalletWidgetState extends State<WalletWidget> {
                 ],
               ),
               box_10,
-              FutureBuilder(
-                future: WalletService()
-                    .getWalletRequest(), // Step 1: The function that sends the request
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularIndicatorWidget(); // Show loading indicator
-                  } else if (snapshot.hasError) {
-                    return Text(
-                        'Error: ${snapshot.error}'); // Show error message
-                  } else {
-                    print(snapshot.data["data"]);
-                    String balance = snapshot.data["data"].toString();
-                    return Text(
-                      '$balance EGP',
+              isLoading
+                  ? const CircularIndicatorWidget()
+                  : Text(
+                      '$currentBalance EGP',
                       style: TextStyle(
                         fontSize: screenWidth / 18,
                         color: kPrimaryColor,
                       ),
-                    );
-                  }
-                },
-              ),
+                    ),
             ],
           ),
           IconButton(
@@ -90,10 +96,9 @@ class WalletWidgetState extends State<WalletWidget> {
                 context: context,
                 builder: (context) {
                   return WalletDialogTopupWidget(
-                    topUpValue: int.tryParse(
-                          WalletDialogTopupWidgetState.valueController.text,
-                        ) ??
-                        0,
+                    onValueUpdated: () {
+                      updateCurrentBalance();
+                    },
                   );
                 },
               );

@@ -3,11 +3,11 @@ import 'package:fannelance_worker/services/stripe_service.dart';
 import 'package:flutter/material.dart';
 
 class WalletDialogTopupWidget extends StatefulWidget {
-  final int topUpValue;
+  final Function() onValueUpdated;
 
   const WalletDialogTopupWidget({
     super.key,
-    required this.topUpValue,
+    required this.onValueUpdated,
   });
 
   @override
@@ -59,7 +59,10 @@ class WalletDialogTopupWidgetState extends State<WalletDialogTopupWidget> {
               alignLabelWithHint: true,
               helperText: 'EGP',
               hintText: 'Enter the recharge value',
-              hintStyle: TextStyle(color: kGrey9, fontSize: screenWidth / 25),
+              hintStyle: TextStyle(
+                color: kGrey9,
+                fontSize: screenWidth / 25,
+              ),
               focusColor: kGrey9,
               focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGrey9),
@@ -71,9 +74,11 @@ class WalletDialogTopupWidgetState extends State<WalletDialogTopupWidget> {
       actions: [
         ElevatedButton(
           onPressed: () async {
+            var topUpValue = int.tryParse(valueController.text) ?? 0;
             await StripeService.handlePayment(
               context,
-              widget.topUpValue
+              topUpValue,
+              widget.onValueUpdated,
             );
             if (context.mounted) {
               Navigator.pop(context);
