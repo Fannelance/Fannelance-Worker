@@ -1,11 +1,17 @@
+import 'package:fannelance_worker/widgets/home_button_widget.dart';
 import 'package:fannelance_worker/widgets/notification_button_widget.dart';
 import 'package:flutter/material.dart';
 
-class NotificationAnimationButtonWidget extends StatelessWidget {
-  const NotificationAnimationButtonWidget({
-    super.key,
-  });
+class NotificationAnimationButtonWidget extends StatefulWidget {
+  const NotificationAnimationButtonWidget({Key? key}) : super(key: key);
 
+  @override
+  NotificationAnimationButtonWidgetState createState() =>
+      NotificationAnimationButtonWidgetState();
+}
+
+class NotificationAnimationButtonWidgetState
+    extends State<NotificationAnimationButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<Duration>(
@@ -14,7 +20,12 @@ class NotificationAnimationButtonWidget extends StatelessWidget {
         begin: const Duration(seconds: 10),
         end: Duration.zero,
       ),
-      onEnd: () => Navigator.pop(context),
+      onEnd: () => {
+        Navigator.pop(context),
+        setState(() {
+          ButtonHomeWidgetState.isAvailable = true;
+        })
+      },
       builder: (
         BuildContext context,
         Duration value,

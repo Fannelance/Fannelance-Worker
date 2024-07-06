@@ -1,4 +1,5 @@
 import 'package:fannelance_worker/core/constants.dart';
+import 'package:fannelance_worker/services/socket_service.dart';
 import 'package:fannelance_worker/widgets/home_activity_widget.dart';
 import 'package:fannelance_worker/widgets/home_appbar_widget.dart';
 import 'package:fannelance_worker/widgets/wallet_widget.dart';
@@ -9,23 +10,41 @@ class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomeView> createState() => HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class HomeViewState extends State<HomeView> {
   bool isOnline = false;
+  static late SocketService socketService;
 
-  void toggleStatus() {
+  @override
+  void initState() {
+    super.initState();
+    _initializeSocketService();
+  }
+
+  void _initializeSocketService() async {
+    socketService = SocketService();
+    await socketService.connect();
+  }
+
+  void _toggleStatus() {
     setState(() {
       isOnline = !isOnline;
     });
   }
 
   @override
+  void dispose() {
+    socketService.disconnect();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: ButtonHomeWidget(
-        onPressed: toggleStatus,
+        onPressed: _toggleStatus,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
@@ -47,4 +66,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-

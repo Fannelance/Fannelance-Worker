@@ -1,5 +1,5 @@
 import 'package:fannelance_worker/core/constants.dart';
-import 'package:fannelance_worker/widgets/home_button_widget.dart';
+import 'package:fannelance_worker/views/home_view.dart';
 import 'package:fannelance_worker/widgets/notification_details_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class NotificationButtonWidget extends StatelessWidget {
       ),
       onPressed: () {
         Navigator.pop(context);
-        ButtonHomeWidgetState.socketService
+        HomeViewState.socketService
             .acceptRequest(NotificationDetailsWidgetState.request);
       },
       child: Row(
