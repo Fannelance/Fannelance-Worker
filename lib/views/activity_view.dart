@@ -13,7 +13,6 @@ class ActivityView extends StatelessWidget {
       ),
       body: ActivityListViewWidget(
         isrecent: false,
-        isReverse: true,
       ),
     );
   }

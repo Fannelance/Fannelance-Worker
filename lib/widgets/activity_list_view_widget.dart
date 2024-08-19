@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 
 class ActivityListViewWidget extends StatelessWidget {
   final bool isrecent;
-  final bool isReverse;
   final ScrollPhysics? physics;
   const ActivityListViewWidget({
     super.key,
     this.isrecent = true,
     this.physics,
-    this.isReverse = false,
   });
 
   @override
@@ -20,27 +18,23 @@ class ActivityListViewWidget extends StatelessWidget {
       future: ActivityService().activityRequest(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Padding(
-            padding: EdgeInsets.only(top: 150.0),
-            child: CircularIndicatorWidget(),
-          );
+          return const CircularIndicatorWidget();
         } else {
           var userData = snapshot.data?['data'];
+          final reversedRequests = userData.reversed.toList();
           return ListView.builder(
-            reverse: isReverse,
-            physics: physics,
             shrinkWrap: isrecent,
+            physics: physics,
             itemCount: isrecent
                 ? userData.length > 2
                     ? 2
                     : userData.length
                 : userData.length,
             itemBuilder: (context, index) {
-              int displayIndex = isrecent ? userData.length - 1 - index : index;
               return Column(
                 children: [
                   ActivityWidget(
-                    userData: userData[displayIndex],
+                    userData: reversedRequests[index],
                   ),
                   const Divider(thickness: 0.5),
                 ],
