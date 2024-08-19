@@ -18,6 +18,7 @@ class SignupViewState extends State<SignupView> {
   static TextEditingController firstNameController = TextEditingController();
   static TextEditingController lastNameController = TextEditingController();
   static TextEditingController emailController = TextEditingController();
+  static TextEditingController hourlyRateController = TextEditingController();
   static String selectedGender = '';
   static String selectedJobTitle = '';
 
@@ -26,14 +27,14 @@ class SignupViewState extends State<SignupView> {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     const List<Map<String, String>> jobsMenuItems = [
-      {'label': 'Carpentry', 'value': 'Carpentry'},
-      {'label': 'Cleaning', 'value': 'Cleaning'},
-      {'label': 'Painting', 'value': 'Painting'},
-      {'label': 'Plumbing', 'value': 'Plumbing'},
-      {'label': 'Electricity', 'value': 'Electricity'},
+      {'label': 'Carpenter', 'value': 'Carpenter'},
+      {'label': 'Cleaner', 'value': 'Cleaner'},
+      {'label': 'Painter', 'value': 'Painter'},
+      {'label': 'Plumber', 'value': 'Plumber'},
+      {'label': 'Electrician', 'value': 'Electrician'},
       {'label': 'Mechanic', 'value': 'Mechanic'},
-      {'label': 'Gardening', 'value': 'Gardening'},
-      {'label': 'Home Appliances', 'value': 'Home Appliances'},
+      {'label': 'Gardener', 'value': 'Gardener'},
+      {'label': 'Home Appliances', 'value': 'Technician'},
     ];
 
     final List<DropdownMenuEntry<String>> jobDropdownMenuEntries = jobsMenuItems
@@ -50,10 +51,12 @@ class SignupViewState extends State<SignupView> {
 
     final List<DropdownMenuEntry<String>> gendreDropdownMenuEntries =
         genderMenuItems
-            .map((item) => DropdownMenuEntry(
-                  label: item['label']!,
-                  value: item['value']!,
-                ))
+            .map(
+              (item) => DropdownMenuEntry(
+                label: item['label']!,
+                value: item['value']!,
+              ),
+            )
             .toList();
 
     return Scaffold(
@@ -63,15 +66,27 @@ class SignupViewState extends State<SignupView> {
         helperText: 'Get ready to relax while we take care of your home.',
         registrationData: Column(
           children: [
-            AuthenticationTextFieldWidget(
-              hint: 'First Name',
-              controller: firstNameController,
+            Row(
+              children: [
+                Expanded(
+                  child: AuthenticationTextFieldWidget(
+                    hint: 'First Name',
+                    controller: firstNameController,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: AuthenticationTextFieldWidget(
+                    hint: 'Last Name',
+                    controller: lastNameController,
+                  ),
+                ),
+              ],
             ),
-            box_15,
-            AuthenticationTextFieldWidget(
-              hint: 'Last Name',
-              controller: lastNameController,
-            ),
+            // box_15,
+
             box_15,
             AuthenticationTextFieldWidget(
               hint: 'Email',
@@ -96,6 +111,12 @@ class SignupViewState extends State<SignupView> {
               },
               dropdownMenuEntries: jobDropdownMenuEntries,
               hintText: 'Job Title',
+            ),
+            box_15,
+            AuthenticationTextFieldWidget(
+              hint: 'Hourly Rate',
+              controller: hourlyRateController,
+              inputType: TextInputType.number,
             ),
             box_15,
           ],
@@ -126,6 +147,7 @@ class SignupViewState extends State<SignupView> {
           firstNameController.clear();
           lastNameController.clear();
           emailController.clear();
+          hourlyRateController.clear();
           ChangePasswordviewState.passwordController.clear();
           selectedGender = '';
           selectedJobTitle = '';
