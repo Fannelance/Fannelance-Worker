@@ -13,7 +13,8 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-
+    var phone = CheckPhoneNumberService.phoneNumber;
+    
     final helperTextStyle = TextStyle(
       color: kGrey7,
       height: 1.4,
@@ -25,7 +26,7 @@ class LoginView extends StatelessWidget {
       body: AuthenticationBodyWidget(
         title: 'Log in',
         helperTextWidget: Text(
-          CheckPhoneNumberService.phoneNumber.substring(2),
+         phone.length >= 2 ? phone.substring(2) : phone,
           maxLines: 3,
           style: helperTextStyle.copyWith(
             color: kGrey3,

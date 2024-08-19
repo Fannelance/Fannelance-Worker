@@ -134,8 +134,6 @@ abstract class StripeService {
     Function() onValueUpdated,
   ) async {
     try {
-      print('Top up value: $topUpValue');
-
       PaymentIntentInputModel inputModel = PaymentIntentInputModel(
         amount: topUpValue,
         currency: 'EGP',
@@ -161,7 +159,6 @@ abstract class StripeService {
         onValueUpdated();
       }
     } catch (error) {
-      print(error);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

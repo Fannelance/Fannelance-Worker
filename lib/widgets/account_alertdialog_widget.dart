@@ -26,7 +26,7 @@ class DialogAccountWidget extends StatelessWidget {
       surfaceTintColor: kWhite,
       actionsOverflowButtonSpacing: 10,
       insetPadding: const EdgeInsets.symmetric(horizontal: 55),
-      iconPadding: const EdgeInsets.symmetric(vertical: 12),
+      iconPadding: const EdgeInsets.only(top: 12, bottom: 8),
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
 
       // Icon

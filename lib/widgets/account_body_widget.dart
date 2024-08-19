@@ -1,3 +1,4 @@
+import 'package:fannelance_worker/core/assets.dart';
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/widgets/account_listtile_widget.dart';
 import 'package:fannelance_worker/widgets/account_showdialog_widget.dart';
@@ -74,8 +75,8 @@ class _BodyAccountWidgetState extends State<BodyAccountWidget> {
           CircleAvatar(
             radius: screenWidth / 9,
             backgroundImage: widget.userData!['gender'] == 'female'
-                ? femaleImage
-                : maleImage,
+                ? AssetsData.workerFemale
+                : AssetsData.workerMale,
           ),
           box_10,
           Text(

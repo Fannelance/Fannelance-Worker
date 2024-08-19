@@ -43,10 +43,6 @@ class HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: ButtonHomeWidget(
-        onPressed: _toggleStatus,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -63,6 +59,10 @@ class HomeViewState extends State<HomeView> {
           ),
         ),
       ),
+      floatingActionButton: ButtonHomeWidget(
+        onPressed: _toggleStatus,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
