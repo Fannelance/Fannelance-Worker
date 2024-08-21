@@ -10,14 +10,14 @@ A platform where skilled technicians can showcase their skills and connect with 
 ## Running App
 
 <div>
-  <img src="https://github.com/user-attachments/assets/3be77f54-03f8-4301-83db-15bd72b020c5" alt="screen 03" width=150 height="300"/>
-  <img src="https://github.com/user-attachments/assets/6e225a43-7290-4bc5-8a3e-d140e2ed30ed" alt="screen 01" width=150 height="300"/>
-  <img src="https://github.com/user-attachments/assets/7c36b594-e0cd-4404-b58b-771f9d55686b" alt="screen 02" width=150 height="300"/>
+  <img src="https://github.com/user-attachments/assets/9101e546-d602-4302-96b9-69163d7400a8" width=180 height="360"/>
+  <img src="https://github.com/user-attachments/assets/f448952a-8a1f-432e-aea1-5c395591449e" width=180 height="360"/>
+  <img src="https://github.com/user-attachments/assets/7d3c1089-b5de-4f7f-b21f-6b95d49bad58" width=180 height="360"/>
 </div>
 <div>
-  <img src="https://github.com/user-attachments/assets/a8c5d71e-220f-4278-bd3d-25db12638ebe" alt="screen 04" width=150 height="300"/>
-  <img src="https://github.com/user-attachments/assets/82ee52bc-e456-433d-9c2d-df8f4ef9d811" alt="screen 06" width=150 height="300"/>
-  <img src="https://github.com/user-attachments/assets/242cb702-a39b-4022-aa93-b8deb767e142" alt="screen 01" width=150 height="300"/>
+  <img src="https://github.com/user-attachments/assets/78d76611-09fc-4399-a180-92e00f8a3590" width=180 height="360"/>
+  <img src="https://github.com/user-attachments/assets/69ef25d8-8ec0-429a-adcc-35b74e583068" width=180 height="360"/>
+  <img src="https://github.com/user-attachments/assets/24bdef64-5aef-4e48-a79a-b5f259f1c6a8" width=180 height="360"/>
 </div>
 
 ## Features
