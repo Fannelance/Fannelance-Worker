@@ -65,6 +65,7 @@ class HomeActivityWidgetState extends State<HomeActivityWidget> {
               ),
             ],
           ),
+          box_20,
           const ActivityListViewWidget(
             physics: NeverScrollableScrollPhysics(),
           )

@@ -13,8 +13,9 @@ class ActivityView extends StatelessWidget {
       ),
       body: ActivityListViewWidget(
         isrecent: false,
+        fontSize: 25,
+        iconSize: 100,
       ),
     );
   }
 }
-
