@@ -1,10 +1,14 @@
+import 'package:fannelance_worker/widgets/home_button_widget.dart';
 import 'package:fannelance_worker/widgets/notification_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class NotificationAnimationButtonWidget extends StatefulWidget {
-    final dynamic userData;
+  final dynamic userData;
 
-  const NotificationAnimationButtonWidget({super.key, this.userData});
+  const NotificationAnimationButtonWidget({
+    super.key,
+    this.userData,
+  });
 
   @override
   NotificationAnimationButtonWidgetState createState() =>
@@ -23,15 +27,15 @@ class NotificationAnimationButtonWidgetState
       ),
       onEnd: () {
         Navigator.pop(context);
+        setState(() {
+          ButtonHomeWidgetState.isAvailable = true;
+        });
       },
-      builder: (
-        BuildContext context,
-        Duration value,
-        Widget? child,
-      ) {
+      builder: (buildContext, value, _) {
         final seconds = value.inSeconds % 60;
         return NotificationButtonWidget(
           seconds: seconds,
+          userData: widget.userData,
         );
       },
     );

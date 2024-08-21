@@ -6,15 +6,15 @@ import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class RequestView extends StatefulWidget {
+class MissionView extends StatefulWidget {
   final dynamic userData;
-  const RequestView({super.key, this.userData});
+  const MissionView({super.key, this.userData});
 
   @override
-  State<RequestView> createState() => _RequestViewState();
+  State<MissionView> createState() => _MissionViewState();
 }
 
-class _RequestViewState extends State<RequestView> {
+class _MissionViewState extends State<MissionView> {
   Future<String> getCurrentLocation(double lat, double long) async {
     List<Placemark> location = await placemarkFromCoordinates(lat, long);
     Placemark place = location[0];
@@ -25,6 +25,7 @@ class _RequestViewState extends State<RequestView> {
   String? locationString;
   @override
   Widget build(BuildContext context) {
+    
     final double screenWidth = MediaQuery.of(context).size.width;
     final latitude = widget.userData['location']['coordinates'][0];
     final longitude = widget.userData['location']['coordinates'][1];
@@ -183,3 +184,4 @@ class _RequestViewState extends State<RequestView> {
     );
   }
 }
+

@@ -34,7 +34,7 @@ class NotificationButtonWidget extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return RequestView(
+              return MissionView(
                 userData: userData,
               );
             },
