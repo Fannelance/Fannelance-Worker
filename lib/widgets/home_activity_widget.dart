@@ -13,8 +13,8 @@ class HomeActivityWidget extends StatefulWidget {
 }
 
 class HomeActivityWidgetState extends State<HomeActivityWidget> {
-    ScrollController scrollController = ScrollController();
-    
+  ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -67,6 +67,7 @@ class HomeActivityWidgetState extends State<HomeActivityWidget> {
           ),
           box_20,
           const ActivityListViewWidget(
+            fontSize: 16,
             physics: NeverScrollableScrollPhysics(),
           )
         ],

@@ -11,11 +11,7 @@ class ActivityView extends StatelessWidget {
       appBar: AppBarMainWidget(
         title: 'Activity',
       ),
-      body: ActivityListViewWidget(
-        isrecent: false,
-        fontSize: 25,
-        iconSize: 100,
-      ),
+      body: ActivityListViewWidget(isrecent: false, fontSize: 20),
     );
   }
 }
