@@ -1,5 +1,5 @@
-<section align="center">
-  <img src="https://github.com/user-attachments/assets/c61c2568-8eac-4f4c-9bfb-9531205c6426" width=200 height=200>
+<section id="fannelance-app" align="center">
+  <img src="assets/icons/fannelance-logo.png" width=200 height=200>
   <h1>Fannelance Worker App</h1>
 </section>
 
@@ -9,16 +9,13 @@ A platform where skilled technicians can showcase their skills and connect with 
 
 ## Running App
 
-<div>
-  <img src="https://github.com/user-attachments/assets/9101e546-d602-4302-96b9-69163d7400a8" width=180 height="360"/>
-  <img src="https://github.com/user-attachments/assets/f448952a-8a1f-432e-aea1-5c395591449e" width=180 height="360"/>
-  <img src="https://github.com/user-attachments/assets/7d3c1089-b5de-4f7f-b21f-6b95d49bad58" width=180 height="360"/>
-</div>
-<div>
-  <img src="https://github.com/user-attachments/assets/78d76611-09fc-4399-a180-92e00f8a3590" width=180 height="360"/>
-  <img src="https://github.com/user-attachments/assets/69ef25d8-8ec0-429a-adcc-35b74e583068" width=180 height="360"/>
-  <img src="https://github.com/user-attachments/assets/24bdef64-5aef-4e48-a79a-b5f259f1c6a8" width=180 height="360"/>
-</div>
+<section id="screens">
+  <img src="screens/screen01.gif" alt="screen 01" width=150 height="300"/>
+  <img src="screens/screen02.gif" alt="screen 02" width=150 height="300"/>
+  <img src="screens/screen03.gif" alt="screen 03" width=150 height="300"/>
+  <img src="screens/screen04.gif" alt="screen 04" width=150 height="300"/>
+  <img src="screens/screen05.gif" alt="screen 05" width=150 height="300"/>
+</section>
 
 ## Features
 
@@ -54,7 +51,15 @@ A platform where skilled technicians can showcase their skills and connect with 
   flutter pub get
 ```
 
-3. Run the app on your perferred device:
+3. Set up environment variables. Create a .env file in the root directory and add the following:
+
+```bash
+  secretKey = your_stripe_secret_key;
+  publishableKey = your_stripe_public_key;
+  serverURL = 'http://your_server_ip_address:3000';
+```
+
+4. Run the app on your perferred device:
 
 ```bash
   flutter run
