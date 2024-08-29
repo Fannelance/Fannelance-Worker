@@ -15,7 +15,6 @@ class ButtonHomeWidget extends StatefulWidget {
 
 class ButtonHomeWidgetState extends State<ButtonHomeWidget> {
   static bool isAvailable = false;
-  static BuildContext? homeContext;
 
 
   @override
@@ -25,20 +24,17 @@ class ButtonHomeWidgetState extends State<ButtonHomeWidget> {
   }
 
 
-  void _connect(bool available) {
+  void _connect(bool available,BuildContext context) {
     HomeViewState.socketService.connected(available);
-    _listenToRequests();
+    _listenToRequests(context);
   }
 
-  void _listenToRequests() {
-    HomeViewState.socketService.listenToRequests();
+  void _listenToRequests(BuildContext context) {
+    HomeViewState.socketService.listenToRequests( context);
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      homeContext = context;
-    });
     return MaterialButton(
       minWidth: 60,
       height: 60,
@@ -47,7 +43,7 @@ class ButtonHomeWidgetState extends State<ButtonHomeWidget> {
         widget.onPressed();
         setState(() {
           isAvailable = !isAvailable;
-          _connect(isAvailable);
+          _connect(isAvailable, context);
         });
       },
       shape: const CircleBorder(),

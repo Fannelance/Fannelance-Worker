@@ -1,3 +1,4 @@
+import 'package:fannelance_worker/core/assets.dart';
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -5,20 +6,27 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ActivityWidget extends StatelessWidget {
   final dynamic userData;
-  const ActivityWidget({super.key, required this.userData});
+  const ActivityWidget({super.key, this.userData});
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+
     String userName = toBeginningOfSentenceCase('${userData!['firstname']} ') +
         toBeginningOfSentenceCase('${userData!['lastname']}');
+    String phoneNumber = userData['phone'];
+
     DateTime createdAt = DateTime.parse(userData['request_date']);
     DateTime localDate = createdAt.toLocal();
     String formattedDate = DateFormat('dd MMM HH:mm').format(localDate);
-
-    Uri url;
+    var textStyle = TextStyle(
+      fontSize: screenWidth / 26,
+      fontFamily: kSemiBold,
+      color: kGrey6,
+    );
     return ListTile(
-      leading: const CircleAvatar(
+      minVerticalPadding: 12,
+      leading: CircleAvatar(
         radius: 28,
         backgroundColor: kBlack,
         child: CircleAvatar(
@@ -26,9 +34,9 @@ class ActivityWidget extends StatelessWidget {
           backgroundColor: kWhite,
           child: CircleAvatar(
             radius: 24,
-            backgroundImage: AssetImage(
-              'assets/icons/user_male.png',
-            ),
+            backgroundImage: userData!['gender'] == 'female'
+                ? AssetsData.userFemale
+                : AssetsData.userMale,
           ),
         ),
       ),
@@ -40,21 +48,14 @@ class ActivityWidget extends StatelessWidget {
             children: [
               Text(
                 userName,
-                style: TextStyle(
+                style: textStyle.copyWith(
+                  color: kBlack,
                   fontSize: screenWidth / 24,
-                  fontFamily: kBold,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: Text(
-                  formattedDate,
-                  style: TextStyle(
-                    fontSize: screenWidth / 26,
-                    fontFamily: kBold,
-                    color: kGrey7,
-                  ),
-                ),
+              Text(
+                formattedDate,
+                style: textStyle,
               ),
             ],
           ),
@@ -63,11 +64,12 @@ class ActivityWidget extends StatelessWidget {
             height: 35,
             color: kGreen,
             onPressed: () async {
-              url = Uri(
-                scheme: 'tel',
-                path: userData['phone'],
+              await launchUrl(
+                Uri(
+                  scheme: 'tel',
+                  path: phoneNumber,
+                ),
               );
-              await launchUrl(url);
             },
             shape: const CircleBorder(
               side: BorderSide(

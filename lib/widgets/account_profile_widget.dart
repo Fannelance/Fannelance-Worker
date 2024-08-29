@@ -1,3 +1,4 @@
+import 'package:fannelance_worker/core/assets.dart';
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/core/routes.dart';
 import 'package:fannelance_worker/services/user_data_service.dart';
@@ -30,8 +31,9 @@ class AccountProfileWidget extends StatelessWidget {
                 backgroundColor: kWhite,
                 child: CircleAvatar(
                   radius: 24,
-                  backgroundImage:
-                      userData!['gender'] == 'female' ? femaleImage : maleImage,
+                  backgroundImage: userData!['gender'] == 'female'
+                      ? AssetsData.workerFemale
+                      : AssetsData.workerMale,
                 ),
               ),
             ),

@@ -19,9 +19,9 @@ const kGreyC8 = Color(0xffC8C8C8);
 const kBlack = Colors.black;
 const kWhite = Colors.white;
 const kWhiteo = Colors.white54;
-const kGreen = Colors.green;
-const kFocusedBorderColor = Color(0xff17AB90);
+const kGreen = Color(0xff5ABA93);
 const kRedEc = Color(0xffEC2632);
+// const kYellow = Color(0xffF7CD29);
 const kAmber = Colors.amber;
 
 /* ************************* Borders ************************* */
@@ -66,11 +66,3 @@ const box_80 = SizedBox(height: 80);
 const box_95 = SizedBox(height: 95);
 const box_100 = SizedBox(height: 100);
 
-/* ************************* Images ************************* */
-
-const femaleImage = AssetImage(
-  'assets/icons/female.png',
-);
-const maleImage = AssetImage(
-  'assets/icons/male.png',
-);

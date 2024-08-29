@@ -1,11 +1,18 @@
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/views/home_view.dart';
-import 'package:fannelance_worker/widgets/notification_details_widget.dart';
+import 'package:fannelance_worker/views/mission_view.dart';
+import 'package:fannelance_worker/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
 
 class NotificationButtonWidget extends StatelessWidget {
+  final dynamic userData;
+
   final int seconds;
-  const NotificationButtonWidget({super.key, required this.seconds});
+  const NotificationButtonWidget({
+    super.key,
+    required this.seconds,
+    this.userData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +27,19 @@ class NotificationButtonWidget extends StatelessWidget {
       ),
       onPressed: () {
         Navigator.pop(context);
-        HomeViewState.socketService
-            .acceptRequest(NotificationDetailsWidgetState.request);
+        HomeViewState.socketService.acceptRequest(
+          NotificationWidgetState.request,
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return MissionView(
+                userData: userData,
+              );
+            },
+          ),
+        );
       },
       child: Row(
         children: [
@@ -37,7 +55,10 @@ class NotificationButtonWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 3,
+                ),
                 child: Text(
                   '$seconds',
                   style: TextStyle(

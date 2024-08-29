@@ -43,10 +43,16 @@ class ShowDialogAccountWidgetState extends State<ShowDialogAccountWidget> {
 
   // Logout Dialog
   void showLogoutDialog(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
       builder: (context) {
         return DialogAccountWidget(
+          icon: Icon(
+            Icons.warning_rounded,
+            color: kAmber,
+            size: screenWidth / 7,
+          ),
           title: 'Are you sure you want to logout?',
           subTitle: 'Press "Logout" to logout,'
               ' or "Cancel" if you want to stay with us.',

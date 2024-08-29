@@ -1,11 +1,10 @@
-
-
 import 'package:fannelance_worker/core/constants.dart';
 import 'package:fannelance_worker/services/check_phone_number_service.dart';
 import 'package:fannelance_worker/services/verify_otp_service.dart';
 import 'package:fannelance_worker/widgets/app_bar_sub_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'dart:async';
 
 class OTPView extends StatefulWidget {
   final String nextPage;
@@ -21,11 +20,40 @@ class OTPView extends StatefulWidget {
 class OTPViewState extends State<OTPView> {
   final focusNode = FocusNode();
   String pinController = '';
+  Timer? _timer;
+  int _start = 60;
+  bool _canResend = false;
 
   @override
   void initState() {
     super.initState();
     pinController = '';
+    startTimer();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            _canResend = true;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -45,7 +73,7 @@ class OTPViewState extends State<OTPView> {
     );
 
     final focusedPinTheme = defaultPinTheme.copyBorderWith(
-      border: Border.all(color: kFocusedBorderColor),
+      border: Border.all(color: kPrimaryColor),
     );
 
     return Scaffold(
@@ -58,7 +86,7 @@ class OTPViewState extends State<OTPView> {
             box_20,
             //title
             SizedBox(
-              width: screenWidth / 1.6,
+              width: screenWidth / 1.4,
               child: Text(
                 'Verify your phone number',
                 style: TextStyle(
@@ -107,9 +135,7 @@ class OTPViewState extends State<OTPView> {
                     listenForMultipleSmsOnAndroid: true,
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     onCompleted: (pin) {
-                      setState(
-                        () => pinController = pin,
-                      );
+                      setState(() => pinController = pin);
                       VerifyOtpService().verifyOtpRequest(
                         pinController: pinController,
                         context: context,
@@ -120,9 +146,7 @@ class OTPViewState extends State<OTPView> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(
-                            bottom: 9,
-                          ),
+                          margin: const EdgeInsets.only(bottom: 9),
                           width: 22,
                           height: 1,
                           color: kBlack,
@@ -149,16 +173,31 @@ class OTPViewState extends State<OTPView> {
                     fontSize: screenWidth / 22,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    'Resend',
-                    style: TextStyle(
-                      fontSize: screenWidth / 22,
-                      color: kFocusedBorderColor,
-                    ),
-                  ),
-                ),
+                _canResend
+                    ? GestureDetector(
+                        onTap: () async {
+                          // Reset the timer if "Resend" is tapped
+                          setState(() {
+                            _start = 60;
+                            _canResend = false;
+                            startTimer();
+                          });
+                          await VerifyOtpService().resendPhoneNumberRequest();
+                        },
+                        child: Text(
+                          'Resend',
+                          style: TextStyle(
+                            fontSize: screenWidth / 24,
+                            color: kPrimaryColor,
+                          ),
+                        ),
+                      )
+                    : Text(
+                        "$_start s",
+                        style: TextStyle(
+                          fontSize: screenWidth / 24,
+                        ),
+                      ),
               ],
             ),
           ],

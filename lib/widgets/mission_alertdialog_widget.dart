@@ -1,21 +1,12 @@
 import 'package:fannelance_worker/core/constants.dart';
+import 'package:fannelance_worker/core/routes.dart';
 import 'package:fannelance_worker/widgets/account_buttondialog_widget.dart';
 import 'package:flutter/material.dart';
 
-class DialogAccountWidget extends StatelessWidget {
-  const DialogAccountWidget({
+class RequestAlertdialogWidget extends StatelessWidget {
+  const RequestAlertdialogWidget({
     super.key,
-    required this.title,
-    required this.subTitle,
-    required this.buttonText,
-    this.onPressed,
-    this.icon,
   });
-  final Widget? icon;
-  final String title;
-  final String subTitle;
-  final String buttonText;
-  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +17,12 @@ class DialogAccountWidget extends StatelessWidget {
       surfaceTintColor: kWhite,
       actionsOverflowButtonSpacing: 10,
       insetPadding: const EdgeInsets.symmetric(horizontal: 55),
-      iconPadding: const EdgeInsets.only(top: 12, bottom: 8),
+      iconPadding: const EdgeInsets.symmetric(vertical: 12),
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-
-      // Icon
-      icon: icon,
 
       // Title
       title: Text(
-        title,
+        'Have you finished the mission?',
         style: TextStyle(
           fontSize: screenWidth / 20,
           fontWeight: FontWeight.w600,
@@ -44,7 +32,8 @@ class DialogAccountWidget extends StatelessWidget {
 
       // Subtitle
       content: Text(
-        subTitle,
+        'Press "Cancel" if you haven\'t finished the current mission yet,\n'
+        'Once you press "End", you\'ll be online to recieve more missions.',
         style: TextStyle(
           fontSize: screenWidth / 28,
           color: kGrey5,
@@ -57,18 +46,21 @@ class DialogAccountWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ButtonDialogAccountWidget(
-              // Delete
+              // End
               onPressed: () {
-                onPressed!();
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName(kHomeRoute),
+                );
               },
-              text: buttonText,
-              backgroundColor: kWhite,
-              textColor: kBlack,
-              borderColor: kGreyE8,
+              text: 'End',
             ),
             const SizedBox(width: 6),
             // Cancel
             ButtonDialogAccountWidget(
+              backgroundColor: kWhite,
+              textColor: kBlack,
+              borderColor: kGreyE8,
               onPressed: () {},
             ),
           ],

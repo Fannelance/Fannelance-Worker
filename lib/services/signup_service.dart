@@ -31,6 +31,7 @@ class SignupService {
             'coordinates': [position.latitude, position.longitude]
           },
           'jobTitle': SignupViewState.selectedJobTitle,
+          'price':SignupViewState.hourlyRateController.text,
         },
         token: await kSecureStorage.read(key: 'token'),
         onPressedSuccess: () {
